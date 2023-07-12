@@ -1,0 +1,74 @@
+Log 1: 27 July 2022
+    - So imma try to build a neural network using pure python. I think doing this will allowed me to understand more the
+        process of neural network and how it actually function
+    - Think this goes against wot the prof is telling me at the start of the course but I think I still have quite a little
+        understanding of NN and probably gonna forgot most of it by the time I finished the course
+    - Might not be able to finish it but well c how it go
+    - Think imma start off with NN that can recognizes truth table.
+    - I think Imma start with an XOR truth table
+    - Rn m thinking of just like a 2-3-1 NN so I can c how it actually work
+    UPDATE: U kno wot m just gonna switch to using numpy instead, making NN without matrices requires so many for loop that I litt
+        cant keep track of them and it is really confusing when problems arrises
+    UPDATE: Finished more than I initially thought, got the forward pass to work now
+    NEXT: Work on backpropagation
+
+
+Log 2: 6 Aug 2022
+    - So imma try to start on backprop but ard got stuck in the first part
+    - Imma try to write a code to genetate the Deltas
+        - At first I thought I can just copy the dimension of the thetas but reealized that I havent add..oshit
+        - Actually no the value is already in, the thing that I append during the forward pass was matrix of ones so
+            they can combined with the weight bias
+    - Ok so I got through some part of the thing but found out that when I take out the column form a mtrix it got
+        automatically turned into 1D array which isnt effected by transpose function
+    - Bruh thats a fking pain in the ass, why cant u just retain the goddam dimension info wa
+    - So tmr(hopefully) I gotta fix the code using .reshape function
+    NEXT: Use reshape funciton to turned the indexed array into a two dimensional array
+
+
+Log 3: 7 Aug 2022
+    - Think I got the bulk of the back propagation to work now, probably
+        - The thing is all I see is bunch of matrix multiplicaiton and I really have no idea if it is calculating
+            whatever I want it to calculate
+        - But I think if the dimension does multiply correctly then I think it should be fine
+    - OK GOT IT TO WORK mostly
+        - The cost does goes down every iterations but it got stuck at like a 0.68 mark
+        - Also the program seems to only work for NN with at most 3 layers
+            - The forward prob works for all but the backprop have a problem when it deals with 4 or 5 layer
+    NEXT: Check out why the cost function got plataued and why it doesnt work for 4+ layers. Also should add regularized function
+
+
+Log 4: 9 Aug 2022
+    - So imma make a function inside the class that will print out all the info like all the Zs and A and Thetas for
+        diagnostic, so I dont have to print out each stuff individualy
+    - Ok so I think I got it to work noe. Turns out the numpy multiply function become really funky when multiplying vector and 0d array tgt
+    - Using .reshape() function to the Z value seems to work
+    - The program still got stuck at a certain cost value tho and the output still looks like random
+    - Think I should try on some big data like the hand written number one or a tytanic thing
+    NEXT: Look for new data set that is large enough (not like the 4 test sets I have rn). Or learn how to do gradient checking
+
+
+Log 5: 10 Aug 2022
+    - Aight imma look for training sets and see how I can process it. May have to learn how to use panda
+    - Ok so everything seems to work fine except that the program always just converges to 0.5 for all predictions
+    - Looked through different solutions but none works
+    - Most promissing one is change the innitialized theta range from 0 to 1 to -0.5 to 0.5 but stll not work
+    - Think Imma have to learn hot to utulizes gradient checking to c if the backprob is working correctly or not
+    UPDATE: YOOOOOO IT WORKS NOW. So turns out I just didnt trained it long enough lmao. I only trained it for 100
+        iterations and it looks random but when I increases it to 1000 the program works perfectly
+    - Did a couple trials with the titanic dataset and it give off a really interesting results
+    - The cost VS iterations for the XOR dataset seems to behave in a very sigmoidal manner, which is really interesting
+    NEXT: Maybe add regularized part into the backprop and also play around with more datasets. Maybe the handwritten number
+        is a good idea cus it have multiple output neurons. Also should add a section to test its accuracy.
+
+
+Log 6: 19 Aug 2022
+    - Gonna try to implement regularization terms into the cost function and backprop
+    - Reg for cost value now works
+    - Tried to move the NN funciton to the test set file itself so I dont have to come back and import different data
+        set to the main file
+        - Encountered a circular import problem where the test set file tries to import NN file but the NN file also
+            tried to import data from the test set
+        - Deleting the importing files seems to work
+    UPDATE: Getting regularization for backprop is a lill bit complicated and m just too laz at the moment will do it
+        next time
